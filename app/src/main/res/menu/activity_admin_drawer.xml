@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_batch"
+            android:icon="@drawable/ic_batches"
+            android:title="Batch" />
+        <item
+            android:id="@+id/nav_faculty"
+            android:icon="@drawable/ic_faculty"
+            android:title="Add Faculty" />
+        <item
+            android:id="@+id/nav_payment"
+            android:icon="@drawable/ic_payment"
+            android:title="Payment" />
+        <item
+            android:id="@+id/nav_enquiry"
+            android:icon="@drawable/ic_enquary"
+            android:title="Enquiry" />
+        <item
+            android:id="@+id/nav_test"
+            android:icon="@drawable/ic_test_creation"
+            android:title="Test Creation" />
+        <item
+            android:id="@+id/nav_video"
+            android:icon="@drawable/ic_video_library"
+            android:title="Video Library" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+
+            <item
+                android:id="@+id/nav_fee_structure"
+                android:icon="@drawable/ic_fee"
+                android:title="Fee Structure" />
+            <item
+                android:id="@+id/nav_listing"
+                android:icon="@drawable/ic_listing"
+                android:title="Listing" />
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_contact"
+                android:title="Contact" />
+            <item
+                android:id="@+id/nav_community"
+                android:icon="@drawable/ic_community"
+                android:title="Community" />
+
+        </menu>
+    </item>
+
+</menu>
