@@ -1,23 +1,23 @@
 package com.ics.admin;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.Fragment;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.ics.admin.Fragment.BatchFragment;
+import com.ics.admin.Fragment.CommunityFragment;
+import com.ics.admin.Fragment.EnquiryFragment;
+import com.ics.admin.Fragment.FacultyFragment;
+import com.ics.admin.Fragment.VideoLibraryFragment;
 
 public class AdminActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,10 +33,11 @@ public class AdminActivity extends AppCompatActivity
         bottom_nav_view = (BottomNavigationView) findViewById(R.id.bottom_nav_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setTitle("Admin");
         bottom_nav_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
                 Fragment fragment = null;
 
                 switch (menuItem.getItemId()) {
@@ -45,16 +46,13 @@ public class AdminActivity extends AppCompatActivity
                         break;
                     case R.id.navigation_comm:
                         fragment = new CommunityFragment();
-//                        loadFragment(fragment);
                         break;
                     case R.id.navigation_video_libary:
                         fragment = new VideoLibraryFragment();
-//                        loadFragment(fragment);
                         break;
-                    case R.id.navigation_testana:
-                        fragment = new BatchFragment ();
-//                        loadFragment(fragment);
-
+                    case R.id.navigation_Batch:
+                        fragment = new BatchFragment();
+                        break;
                     case R.id.navigation_student_material:
                         fragment = new EnquiryFragment();
 //                        loadFragment(fragment);
@@ -63,15 +61,6 @@ public class AdminActivity extends AppCompatActivity
                 return loadFragment(fragment);
             }
         });
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -82,7 +71,7 @@ public class AdminActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        toolbar.setTitle("Fee Records");
+        toolbar.setTitle("Admin");
         loadFragment(new FacultyFragment());
     }
 

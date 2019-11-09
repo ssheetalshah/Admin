@@ -3,7 +3,7 @@ package com.ics.admin;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,7 +24,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.IllegalFormatCodePointException;
 import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -46,7 +45,7 @@ public class AddFacultyActivity extends AppCompatActivity {
         edt_address=(EditText)findViewById(R.id.edt_address);
         btn_save=(Button) findViewById(R.id.btn_save);
 
-        btn_save.setOnClickListener(new View.OnClickListener() {
+         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -69,7 +68,7 @@ public class AddFacultyActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().length() == 10) {
-                   // new RegGetOtp(s.toString()).execute();
+                    // new RegGetOtp(s.toString()).execute();
                 }
 
             }
@@ -237,11 +236,11 @@ public class AddFacultyActivity extends AppCompatActivity {
 
                 JSONObject postDataParams = new JSONObject();
 
-                postDataParams.put("name", edt_name.getText().toString());
-                postDataParams.put("mobile", edt_mobile.getText().toString());
-                postDataParams.put("email", edt_email.getText().toString());
-                postDataParams.put("password", edt_password.getText().toString());
-                postDataParams.put("address", edt_address.getText().toString());
+                postDataParams.put("name", Name);
+                postDataParams.put("mobile", Phone_Number);
+                postDataParams.put("email", Email);
+                postDataParams.put("password", Password);
+                postDataParams.put("address", Address);
 
                 Log.e("postDataParams", postDataParams.toString());
 
@@ -305,15 +304,21 @@ public class AddFacultyActivity extends AppCompatActivity {
                     if(!jsonObject.getBoolean("responce")){
                         //    getotp.setVisibility(View.VISIBLE);
 //                        Intent
-                    }else {
-                        String name=jsonObject.getString("name");
-                        String mobile=jsonObject.getString("mobile");
-
-                        Toast.makeText(getApplication(),"Sorry You are not Registerd"+name, Toast.LENGTH_SHORT).show();
-
-                        //Intent intent=new Intent(RegistrationActivity.this, HomePageActivity.class);
-                        //startActivity(intent);
-                        //finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(AddFacultyActivity.this, "Faculty Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AddFacultyActivity.this , AdminActivity.class);
+                        startActivity(intent);
+//                        JSONObject massage=jsonObject.getJSONObject("massage");
+//
+////                        String mobile=jsonObject.getString("mobile");
+//
+////                        Toast.makeText(getApplication(),"Sorry You are not Registerd"+name, Toast.LENGTH_SHORT).show();
+//
+//                        //Intent intent=new Intent(RegistrationActivity.this, HomePageActivity.class);
+//                        //startActivity(intent);
+//                        //finish();
                     }
 
 

@@ -1,23 +1,26 @@
-package com.ics.admin;
+package com.ics.admin.Fragment;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ics.admin.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BatchFragment.OnFragmentInteractionListener} interface
+ * {@link AdminDFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BatchFragment#newInstance} factory method to
+ * Use the {@link AdminDFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BatchFragment extends Fragment {
+public class AdminDFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +32,7 @@ public class BatchFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public BatchFragment() {
+    public AdminDFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +42,11 @@ public class BatchFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BatchFragment.
+     * @return A new instance of fragment AdminDFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BatchFragment newInstance(String param1, String param2) {
-        BatchFragment fragment = new BatchFragment();
+    public static AdminDFragment newInstance(String param1, String param2) {
+        AdminDFragment fragment = new AdminDFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +67,7 @@ public class BatchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_batch, container, false);
+        return inflater.inflate(R.layout.fragment_admin_d, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

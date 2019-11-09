@@ -19,7 +19,7 @@
 
         android:title="Video Library" />
     <item
-        android:id="@+id/navigation_testana"
+        android:id="@+id/navigation_Batch"
         android:icon="@drawable/ic_batches"
         android:title="Batches " />
     <item

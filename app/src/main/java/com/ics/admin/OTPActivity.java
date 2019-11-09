@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -12,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.ics.admin.Activities_by_Parag.ui.Faculty_Dashoard;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,15 +29,19 @@ import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class OTPActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class OTPActivity  extends AppCompatActivity {
+
     EditText getotp, mobile;
     Button getotpbtn;
+    public static int Admin_id;
+    public static String Faculty_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
-
         getotp = findViewById(R.id.getotp);
         mobile = findViewById(R.id.mobile);
         getotpbtn = findViewById(R.id.getotpbtn);
@@ -47,14 +52,14 @@ public class OTPActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-               if(getotpbtn.getText().toString().equals("Login")) {
-                   new Verifyotp(getotp.getText().toString(),mobile.getText().toString()).execute();
-               }
-        else {
-
-
-               }
+                if(getotpbtn.getText().toString().equals("Login")) {
+                    new Verifyotp(getotp.getText().toString(),mobile.getText().toString()).execute();
                 }
+                else {
+
+
+                }
+            }
 
 
 
@@ -69,11 +74,11 @@ public class OTPActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().length() == 10) {
+                if (s.toString().length() == 10 || s.toString().length() == 12) {
                     new GetOtp(s.toString()).execute();
                 }
                 else
-                    {
+                {
                     Log.e("no" , ""+s.toString().length());
                 }
 
@@ -167,7 +172,7 @@ public class OTPActivity extends AppCompatActivity {
                     if(!jsonObject.getBoolean("responce")){
 //                       Intent intent = new Intent(OTPActivity.this , LoginActivity.class);
 //                       startActivity(intent);
-                       Toast.makeText(getApplication(),"You are not registerd"+result, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplication(),"You are not registerd"+result, Toast.LENGTH_SHORT).show();
                     }else {
                         getotp.setVisibility(View.VISIBLE);
                         String otp= jsonObject.getString("data");
@@ -226,7 +231,7 @@ public class OTPActivity extends AppCompatActivity {
 
             try {
 
-                URL url = new URL("http://ihisaab.in/school_lms/Adminapi/sendotp");
+                URL url = new URL("http://ihisaab.in/school_lms/Adminapi/login");
 
                 JSONObject postDataParams = new JSONObject();
                 postDataParams.put("otp", Mobile_Number);
@@ -293,12 +298,20 @@ public class OTPActivity extends AppCompatActivity {
 
                     jsonObject = new JSONObject(result);
                     if(!jsonObject.getBoolean("responce")){
-                       getotp.setVisibility(View.VISIBLE);
-                      Toast.makeText(getApplication(),"strong OTP"+result, Toast.LENGTH_SHORT).show();
+                        getotp.setVisibility(View.VISIBLE);
+                        Toast.makeText(getApplication(),"strong OTP"+result, Toast.LENGTH_SHORT).show();
                     }else {
-
-                      Intent intent1=new Intent(OTPActivity.this,AdminActivity.class);
-                       startActivity(intent1);
+                        String type = jsonObject.getJSONObject("data").getString("type");
+                        Faculty_id = jsonObject.getJSONObject("data").getString("user_id");
+                        if(type.equals("1")) {
+                            Intent intent = new Intent(OTPActivity.this, AdminActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            Intent intent1 = new Intent(OTPActivity.this, Faculty_Dashoard.class);
+                            startActivity(intent1);
+                            finish();
+                        }
                     }
 
 
@@ -335,5 +348,6 @@ public class OTPActivity extends AppCompatActivity {
             return result.toString();
         }
     }
-}
+
+    }
 
